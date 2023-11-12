@@ -55,22 +55,21 @@ const SItems = createVisualComponent({
       // Update parent's state instead of local state
       props.onDelete (id);
     }
-    console.log(props);
-
-
-
-
 
 
     return  (
-        <Uu5Elements.Grid>
-          {
-            props.isActive   ?
-            products.map((product) => (    product.active  &&  <SItem  key={product.id} product={product} onDelete={() => handleDelete(product.id)}    />      ) ):
-              products.map((product) => (     <SItem key={product.id}   product={product}  onDelete={() => handleDelete(product.id)}     />      ) )
-
-          }
-        </Uu5Elements.Grid>
+      <Uu5Elements.Grid>
+        {products
+          .filter((product) => props.isActive ? product.active : true)
+          .map((product) => (
+            <SItem
+              key={product.id}
+              product={product}
+              onDelete={() => handleDelete(product.id)}
+              isItemActive={props.isItemActive}
+            />
+          ))}
+      </Uu5Elements.Grid>
 
     )
     //@@viewOff:render

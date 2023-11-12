@@ -85,8 +85,8 @@ let Slist = createVisualComponent({
       <div {...attrs}>
 
           <RouteBar />
-          <MainBox products={PRODUCTS} />;
-        <Tree />
+          <MainBox initialProducts={PRODUCTS} initialList={SHOPPING_LISTS[0]} />;
+
 
 
       </div>
@@ -94,7 +94,9 @@ let Slist = createVisualComponent({
     //@@viewOff:render
   },
 });
-
+const SHOPPING_LISTS = [
+  {id: Utils.String.generateId(), name: "Páteční nákup",  archive: false, childId:[156, 142, 186]}
+];
 const PRODUCTS = [
   {id: Utils.String.generateId(), name: "Apple", amount: 5, unit: "Kg", active: false},
   {id: Utils.String.generateId(), name: "Car",  amount: 4, unit: "pieces", active: false},
