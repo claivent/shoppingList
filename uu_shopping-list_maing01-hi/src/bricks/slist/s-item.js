@@ -54,9 +54,9 @@ const SItem = createVisualComponent({
 
 
     function handleIsItemActive(id, checked){
-      const c = checked
+
       //setChecked(c);
-      props.isItemActive(id,c)
+      props.isItemActive(id,checked)
 
     }
     //@@viewOn:render
@@ -73,13 +73,13 @@ const SItem = createVisualComponent({
     return  (
           <Uu5Elements.ListItem  {...attrs}
             icon="uugds-dnd" actionList={[
-              { icon: "uugds-pencil" },
+
               { icon: "uugds-delete",  primary: true, onClick: props.onDelete },
             ]}
           >
             <Uu5Forms.Text.Input value = {name} onChange={(e)=> setName(e.data.value)} placeholder="Name" significance="distinct"/>
-            <Uu5Forms.Text.Input value = {amount} onChange={(e)=> setAmount(e.data.value)} placeholder="Author" significance="subdued"/>
-            <Uu5Forms.Text.Input value = {unit} onChange={(e)=> setUnit(e.data.value)} placeholder="Author" significance="subdued"/>
+            <Uu5Forms.Text.Input value = {amount} onChange={(e)=> setAmount(e.data.value)} placeholder="Author" significance="distinct"/>
+            <Uu5Forms.Text.Input value = {unit} onChange={(e)=> setUnit(e.data.value)} placeholder="Author" significance="distinct"/>
             <Uu5Forms.Checkbox
               value={checked}
               box={checked} name="active"

@@ -1,5 +1,6 @@
 //@@viewOn:imports
-import { createVisualComponent, Utils, useState, useSession } from "uu5g05";
+import { createVisualComponent, Utils, useState, useSession , useScreenSize} from "uu5g05";
+import { RouteController } from "uu_plus4u5g02-app";
 import Uu5Elements from "uu5g05-elements";
 import Config from "./config/config.js";
 import SearchBar from "./search-bar";
@@ -7,6 +8,7 @@ import SItems from "./s-items";
 import Footbar from "./footbar";
 import Uu5Forms from "uu5g05-forms";
 import {useSubAppData, useSystemData} from "uu_plus4u5g02";
+
 
 
 
@@ -21,6 +23,28 @@ const Css = {
   main: () => Config.Css.css({
     BackgroundColor: "grey",
   }),
+};
+const Css2 = {
+  container: (screenSize) => {
+    let maxWidth;
+
+    switch (screenSize) {
+      case "xs":
+      case "s":
+        maxWidth = "100%";
+        break;
+      case "m":
+      case "l":
+        maxWidth = 640;
+        break;
+      case "xl":
+      default:
+        maxWidth = 1280;
+    }
+
+    return Config.Css.css({ maxWidth: maxWidth, margin: "0px auto", paddingLeft: 8, paddingRight: 8 });
+  },
+  createView: () => Config.Css.css({ margin: "24px 0px" }),
 };
 //@@viewOff:css
 
@@ -86,11 +110,11 @@ const MainBox = createVisualComponent({
 
     //@@viewOn:render
     const attrs = Utils.VisualComponent.getAttrs(props, Css.main());
-
+    const [screenSize] = useScreenSize();
     return  (
-
+      <div  className={Css2.container(screenSize)}>
       <Uu5Elements.Block
-        {...attrs}
+
         header={list.name}
         headerType="title"
         actionList={[{icon: "uugds-pencil", onClick: ()=> setModalOpen([true, 0])   }]} //TODO modal
@@ -109,7 +133,7 @@ const MainBox = createVisualComponent({
                   setChecked(!checked);
               }}
               />
-          <Uu5Elements.Grid className={Config.Css.css({maxWidth: "100%"})}>
+          <Uu5Elements.Grid>
               <SItems
                 products={products}
                 isActive = {checked}
@@ -164,7 +188,7 @@ const MainBox = createVisualComponent({
         </Uu5Elements.Block>
 
   </Uu5Elements.Block>
-
+      </div>
     )
     //@@viewOff:render
   }
