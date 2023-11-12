@@ -62,6 +62,17 @@ const MainBox = createVisualComponent({
       setModalOpen(false);
     }
 
+    function handleDelete(id) {
+      console.log(id);
+      console.log("handle delete");
+      setProducts((actualItemList) => {
+        const index = actualItemList.findIndex((item) => item.id === id);
+        const a = 'index' + index;
+        console.log(a);
+        actualItemList[index].active = false; // Set 'active' to false instead of removing the item
+        return [...actualItemList];
+      });
+    }
 
     //@@viewOn:render
     const attrs = Utils.VisualComponent.getAttrs(props, Css.main());
@@ -81,7 +92,7 @@ const MainBox = createVisualComponent({
             }}
             />
         <Uu5Elements.Grid className={Config.Css.css({maxWidth: "100%"})}>
-            <SItems products={products}  isActive = {checked}   />
+            <SItems products={products}  isActive = {checked} onDelete={handleDelete}   />
         </Uu5Elements.Grid>
         <Uu5Forms.Form.Provider key={modalOpen} onSubmit = {handleSubmit}>
 

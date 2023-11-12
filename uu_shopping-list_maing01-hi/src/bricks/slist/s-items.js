@@ -44,20 +44,18 @@ const SItems = createVisualComponent({
     //@@viewOn:private
     const { children } = props;
     //@@viewOff:private
-    const [products, setProducts] = useState(props.products);
+
+    const products = props.products;
     //@@viewOn:interface
     //@@viewOff:interface
 
     //@@viewOn:render
     const attrs = Utils.VisualComponent.getAttrs(props, Css.main());
-    function handleDelete(id){
-      setProducts(([...actualItemList]) => { /* [...actualItemList] vytvoří kopii produktů*/
-        const index = actualItemList.findIndex((item)=> item.id === id);
-        actualItemList.splice(index, 1) ;/* smažu takto jednu položku*/
-        return actualItemList;
-      } )
+    function handleDelete(id) {
+      // Update parent's state instead of local state
+      props.onDelete (id);
     }
-
+    console.log(props);
 
 
 
