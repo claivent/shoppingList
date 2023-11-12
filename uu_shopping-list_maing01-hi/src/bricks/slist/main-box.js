@@ -9,11 +9,7 @@ import Uu5Forms from "uu5g05-forms";
 import {useSubAppData, useSystemData} from "uu_plus4u5g02";
 
 
-const subAppDataObject = useSubAppData();
-const systemDataObject = useSystemData();
-const { identity } = useSession();
-const profileList = systemDataObject.data.profileData.uuIdentityProfileList;
-const canCreate = profileList.includes("Authorities") || profileList.includes("Executives");
+
 
 //@@viewOff:imports
 
@@ -87,7 +83,7 @@ const MainBox = createVisualComponent({
       })
     }
 
-console.log(identity);
+
     //@@viewOn:render
     const attrs = Utils.VisualComponent.getAttrs(props, Css.main());
 
