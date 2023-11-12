@@ -47,7 +47,7 @@ const MainBox = createVisualComponent({
       //save data
       setProducts(([...actualItemList])=>{
         console.log (actualItemList);
-        actualItemList.push({id: Utils.String.generateId(), ...data });
+        actualItemList.push({id: Utils.String.generateId(),  ...data, active: true, });
         return actualItemList;
       })
 
@@ -56,6 +56,7 @@ const MainBox = createVisualComponent({
     function  handleSubmit(e){
       const data =e.data.value; /* data z  formuláře*/
       console.log (data);
+
 
       addItem(data);
       setModalOpen(false);
@@ -96,8 +97,8 @@ const MainBox = createVisualComponent({
             }
           >
             <Uu5Forms.FormText name="name" label = "Name"/>
-            <Uu5Forms.FormText amount="amount"   label = "Amount"/>
-            <Uu5Forms.FormText unit="unit"   label = "Unit"/>
+            <Uu5Forms.FormText name="amount"   label = "Amount"/>
+            <Uu5Forms.FormText name="unit"   label = "Unit"/>
 
           </Uu5Elements.Modal>
         </Uu5Forms.Form.Provider>
