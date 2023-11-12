@@ -44,7 +44,7 @@ const Css2 = {
 
     return Config.Css.css({ maxWidth: maxWidth, margin: "0px auto", paddingLeft: 8, paddingRight: 8 });
   },
-  createView: () => Config.Css.css({ margin: "24px 0px" }),
+
 };
 //@@viewOff:css
 
@@ -133,7 +133,9 @@ const MainBox = createVisualComponent({
                   setChecked(!checked);
               }}
               />
-          <Uu5Elements.Grid>
+          <Uu5Elements.Grid
+            className={Css2.container(screenSize)}
+          >
               <SItems
                 products={products}
                 isActive = {checked}

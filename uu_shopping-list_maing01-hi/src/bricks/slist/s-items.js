@@ -1,5 +1,5 @@
 //@@viewOn:imports
-import {createVisualComponent, Utils, ContentSizeProvider, useState} from "uu5g05";
+import {createVisualComponent, Utils,  ContentSizeProvider, useState} from "uu5g05";
 import Config from "./config/config.js";
 import SItem from "./s-item";
 import Uu5Elements from "uu5g05-elements";
@@ -15,7 +15,14 @@ import Uu5TilesElements from "uu5tilesg02-elements";
 
 //@@viewOn:css
 const Css = {
-  main: () => Config.Css.css({}),
+  main: () =>
+    Config.Css.css({
+
+    }),
+  gridItem: () => Config.Css.css({
+    margin: "24px 0px",
+    border: "2px solid black",
+  }),
 
 };
 //@@viewOff:css
@@ -56,20 +63,19 @@ const SItems = createVisualComponent({
       props.onDelete (id);
     }
 
-
+  console.log("Products",props.products,props.isActive, );
     return  (
-      <Uu5Elements.Grid>
+      <Uu5Elements.Grid.Item>
         {products
-          .filter((product) => props.isActive ? product.active : true)
-          .map((product) => (
-            <SItem
+          .filter((product) => props.isActive ?  !product.active :true ).map((product) => (
+            <SItem className={Css.gridItem()}
               key={product.id}
               product={product}
               onDelete={() => handleDelete(product.id)}
               isItemActive={props.isItemActive}
             />
           ))}
-      </Uu5Elements.Grid>
+      </Uu5Elements.Grid.Item>
 
     )
     //@@viewOff:render
