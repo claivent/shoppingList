@@ -62,12 +62,10 @@ const SItem = createVisualComponent({
           <Uu5Elements.ListItem  {...attrs}
             icon="uugds-react"
             actionList={[
-              { icon: "uugds-plus", children: "Create" },
               { icon: "uugds-reload", children: "Update" },
-              { icon: "uugds-delete", children: "Delete", primary: true },
+              { icon: "uugds-delete", children: "Delete", primary: true, onClick: props.onDelete },
             ]}
           >
-
             {name}
           </Uu5Elements.ListItem>
     )

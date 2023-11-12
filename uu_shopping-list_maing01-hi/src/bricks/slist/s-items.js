@@ -1,5 +1,5 @@
 //@@viewOn:imports
-import { createVisualComponent, Utils, ContentSizeProvider } from "uu5g05";
+import {createVisualComponent, Utils, ContentSizeProvider, useState} from "uu5g05";
 import Config from "./config/config.js";
 import SItem from "./s-item";
 import Uu5Elements from "uu5g05-elements";
@@ -44,25 +44,32 @@ const SItems = createVisualComponent({
     //@@viewOn:private
     const { children } = props;
     //@@viewOff:private
-
+    const [products, setProducts] = useState(props.products);
     //@@viewOn:interface
     //@@viewOff:interface
 
     //@@viewOn:render
     const attrs = Utils.VisualComponent.getAttrs(props, Css.main());
+    function handleDelete(id){
+      setProducts(([...actualItemList]) => { /* [...actualItemList] vytvoří kopii produktů*/
+        const index = actualItemList.findIndex((item)=> item.id === id);
+        actualItemList.splice(index, 1) ;/* smažu takto jednu položku*/
+        return actualItemList;
+      } )
+    }
 
 
 
 
-    const products = [...props.products];
-    console.log(props.isActive);
+
+
 
     return  (
         <Uu5Elements.Grid>
           {
             props.isActive   ?
-            products.map((product) => (    product.active  &&  <SItem   product={product}   key={product.name} />      ) ):
-              products.map((product) => (     <SItem   product={product}   key={product.name} />      ) )
+            products.map((product) => (    product.active  &&  <SItem  key={product.id} product={product} onDelete={() => handleDelete(product.id)}    />      ) ):
+              products.map((product) => (     <SItem key={product.id}   product={product}  onDelete={() => handleDelete(product.id)}     />      ) )
 
           }
         </Uu5Elements.Grid>

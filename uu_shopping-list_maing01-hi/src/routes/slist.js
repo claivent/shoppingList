@@ -96,12 +96,12 @@ let Slist = createVisualComponent({
 });
 
 const PRODUCTS = [
-  {name: "Apple", category: "Fruits", amount: 5, unit: "Kg", active: false},
-  {name: "Car", category: "Toy", amount: 4, unit: "pieces", active: false},
-  {name: "Passionfruit", category: "Fruits", amount: 5, unit: "pieces", active: false },
-  {name: "Spinach", category: "Vegetables", amount: 10, unit: "Stock", active: true },
-  {name: "Pumpkin", category: "Vegetables", amount: 4, unit: "Stock", active: false },
-  {name: "Peas", category: "Vegetables", amount: 5, unit: "Kg", active: true }
+  {id: Utils.String.generateId(), name: "Apple", amount: 5, unit: "Kg", active: false},
+  {id: Utils.String.generateId(), name: "Car",  amount: 4, unit: "pieces", active: false},
+  {id: Utils.String.generateId(), name: "Knife",  amount: 5, unit: "pieces", active: false },
+  {id: Utils.String.generateId(), name: "Orange",  amount: 10, unit: "Stock", active: true },
+  {id: Utils.String.generateId(), name: "Pumpkin",  amount: 4, unit: "Stock", active: false },
+  {id: Utils.String.generateId(), name: "Peas",  amount: 5, unit: "Kg", active: true }
 ];
 
 Slist = withRoute(Slist, { authenticated: false }); //TODO return back to true

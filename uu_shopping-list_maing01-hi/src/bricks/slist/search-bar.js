@@ -47,7 +47,7 @@ const SearchBar = createVisualComponent({
 
     //@@viewOn:render
     const attrs = Utils.VisualComponent.getAttrs(props, Css.main());
-    console.log(props);
+
 
     return  (
 
