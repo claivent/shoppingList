@@ -1,0 +1,39 @@
+npm run generate component Bricks.Joke.ListProvider
+
+npm run generate visualComponent Bricks.Joke.ListView
+
+MainBox
+  TopBar
+    SearchBar
+  SListBar (list of lists)
+    CategoryRow
+    Item (list)
+    SBtnBox
+
+    SListBar   (list of Items)
+      CategoryRow
+      Item   (Item )
+      EditBtnBox
+  Footbar
+    RouteBar
+
+
+ npm run generate visualComponent Routes.slist
+
+
+
+ {
+             props.isActive   ?
+             products.map((product) => (    product.active  &&  <SItem   product={product}   key={product.name} />      ) ):
+               products.map((product) => (     <SItem   product={product}   key={product.name} />      ) )
+
+           }
+
+
+             const SERIE_LIST = [
+                 { value: "name", label: "Name"},
+                 { value: "category", label: "category"},
+                 { value: "amount", label: <Lsi lsi={{ cs: "Množství", en: "Amount" }} />},
+                 { value: "unit", label: <Lsi lsi={{ cs: "Unit", en: "Jednotka" }} />},
+                 { value: "active", label: <Lsi lsi={{ cs: "Aktivní", en: "Active" }} />},
+               ]

@@ -4,6 +4,7 @@ import Config from "./config/config.js";
 import { withRoute } from "uu_plus4u5g02-app";
 import Tree from "../bricks/help/tree";
 import RouteBar from "../core/route-bar.js";
+import MainBox from "../bricks/slist/main-box";
 import importLsi from "../lsi/import-lsi.js";
 
 
@@ -78,79 +79,6 @@ let Slist = createVisualComponent({
       );
     }
 
-    function SItem({ product }) {
-      const name = product.active ? product.name :
-        <span style={{ color: 'red' }}>
-      {product.name}
-    </span>;
-      const amountUnit = [product.amount, product.unit]
-      return (
-        <tr>
-          <td>{name}</td>
-          <td>{amountUnit.join(' ')} </td>
-        </tr>
-      );
-    }
-    function SItems({ products }) {
-      const rows = [];
-      let lastCategory = null;
-
-      products.forEach((product) => {
-        if (product.category !== lastCategory) {
-          rows.push(
-            <ProductCategoryRow
-              category={product.category}
-              key={product.category} />
-          );
-        }
-        rows.push(
-          <SItem
-            product={product}
-            key={product.name} />
-        );
-        lastCategory = product.category;
-      });
-
-      return (
-        <table>
-          <thead>
-          <tr>
-            <th>Name</th>
-            <th>Amount</th>
-          </tr>
-          </thead>
-          <tbody>{rows}</tbody>
-        </table>
-      );
-    }
-    function SearchBar() {
-      return (
-        <form>
-          <input type="text" placeholder="Search..." />
-          <label>
-            <input type="checkbox" />
-            {' '}
-            Only show products in stock
-          </label>
-        </form>
-      );
-    }
-    function MainBox({ products }) {
-      return (
-        <div>
-          <SearchBar />
-          <SItems products={products} />
-        </div>
-      );
-    }
-    const PRODUCTS = [
-      {category: "Fruits", amount: 5, unit: "Kg", active: true, name: "Apple"},
-      {category: "Toy", amount: 4, unit: "pieces", active: true, name: "Car"},
-      {category: "Fruits", amount: 5, unit: "pieces", active: false, name: "Passionfruit"},
-      {category: "Vegetables", amount: 10, unit: "Stock", active: true, name: "Spinach"},
-      {category: "Vegetables", amount: 4, unit: "Stock", active: false, name: "Pumpkin"},
-      {category: "Vegetables", amount: 5, unit: "Kg", active: true, name: "Peas"}
-    ];
 
 
     return(
@@ -167,6 +95,14 @@ let Slist = createVisualComponent({
   },
 });
 
+const PRODUCTS = [
+  {name: "Apple", category: "Fruits", amount: 5, unit: "Kg", active: false},
+  {name: "Car", category: "Toy", amount: 4, unit: "pieces", active: false},
+  {name: "Passionfruit", category: "Fruits", amount: 5, unit: "pieces", active: false },
+  {name: "Spinach", category: "Vegetables", amount: 10, unit: "Stock", active: true },
+  {name: "Pumpkin", category: "Vegetables", amount: 4, unit: "Stock", active: false },
+  {name: "Peas", category: "Vegetables", amount: 5, unit: "Kg", active: true }
+];
 
 Slist = withRoute(Slist, { authenticated: false }); //TODO return back to true
 
